@@ -42,7 +42,6 @@ class Mainpage:
     date_21_december = (By.XPATH, "//a[contains(text(),'21')]")
     date_02_january = (By.XPATH, "//a[contains(text(),'2')]")
     search_button = (By.CSS_SELECTOR, "[class='blue-btn flight-search-form__search-button']")
-    asdasds = "dadfs "
 
 
     def logo(self):

@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from test_setup.webdriver_setup import se
 from Pages.mainpage import Mainpage
 from Pages.flightselection_page import Flight_selection
+from Scripts import emailsend
 
 
 @pytest.fixture
@@ -249,6 +250,8 @@ def test_flight_book_bogota(mainpage_instance):
     print(amount)
     if int(amount.replace("$", "").replace(",","")) < 400:
         print("good deal")
+    amount = "Price Fly to Bogota is " + amount
+    emailsend.send_email(amount)
 
 
 
