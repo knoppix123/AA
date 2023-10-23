@@ -167,14 +167,14 @@ def test_flight_book_paris(mainpage_instance):
     MP.next_arrow_cal().click()
     MP.next_arrow_cal().click()
     MP.date_04_feb().click()
-    time.sleep(1)
+    time.sleep(3)
     MP.search_but().click()
     time.sleep(5)
     MP.driver.switch_to.window(MP.driver.window_handles[1])
     title = MP.driver.title
     assert title == "ATL to CDG - Cheap flights from ATL to CDG - Skiplagged"
     FP.select_cheap_flight().click()
-    # time.sleep(4)
+    time.sleep(4)
     FP.select_cheap_return().click()
     time.sleep(2)
     amount = FP.total_amt_of_trip().text
