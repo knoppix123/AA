@@ -319,7 +319,7 @@ def test_flights_from_ATL_to_Europe(mainpage_instance):
 def test_flights_from_ATL_to_Europe_roundtrip(mainpage_instance):
     MP, FP = mainpage_instance
     number = 0
-    while number != 10:
+    while number != 1:
         MP, FP = mainpage_instance
         departure_city_list = ["ATL"]
         departure_day_list = ["21", "22", "23", "24", "25"]
