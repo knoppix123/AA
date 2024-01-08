@@ -330,8 +330,8 @@ def test_flights_from_ATL_to_Europe_roundtrip(mainpage_instance):
 
         departure_city = random.choice(departure_city_list)
         # arrival_city = random_key
-        date_month_dep = "January"
-        date_month_arr = "February"
+        date_month_dep = "March"
+        date_month_arr = "April"
 
         date_day_dep = random.choice(departure_day_list)
         date_day_arr = random.choice(arrival_day_list)
