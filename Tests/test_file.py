@@ -477,3 +477,94 @@ def test_flights_from_Baltimor_to_Europe_roundtrip(mainpage_instance):
         MP.logo().click()
         time.sleep(3)
         number = number + 1
+
+def test_flights_from_ATL_to_Cancun_roundtrip(mainpage_instance):
+    MP, FP = mainpage_instance
+    number = 0
+    while number != 1:
+        MP, FP = mainpage_instance
+        departure_city_list = ["ATL"]
+        # departure_day_list = ["14","15","21","22"]
+        departure_day_list = ["14", "15","21", "22"]
+
+        arrival_city_list = {"CUN": "Cancun"}
+        arrival_day_list = ["18","19","25","26"]
+        # arrival_day_list = ["14","15","16","17","28"]
+
+        arrival_city = random.choice(list(arrival_city_list.keys()))
+        departure_city = random.choice(departure_city_list)
+        date_month_dep = "February"
+        date_month_arr = "February"
+
+        date_day_dep = random.choice(departure_day_list)
+        date_day_arr = random.choice(arrival_day_list)
+
+        while date_day_dep > date_day_arr:
+            date_day_arr = random.choice(arrival_day_list)
+            print(f"{date_day_dep} + dep")
+            print(f"{date_day_arr}+ arr")
+
+        MP.departure_airport().clear()
+        MP.departure_airport().send_keys(departure_city)
+        time.sleep(1)
+        MP.get_sug_citya_departure().click()
+        MP.arrival_airport().clear()
+        MP.arrival_airport().send_keys(arrival_city)
+        time.sleep(1)
+        MP.get_sug_city_arrival().click()
+        time.sleep(1)
+        MP.departure_calendar().click()
+        time.sleep(1)
+        month = "a"
+        ccc = 0
+        while date_month_dep != month:
+            MP.next_arrow_cal().click()
+            month = MP.get_date_month().text
+            ccc = ccc + 1
+            if ccc > 10:
+                aaa = 0
+                while aaa < 12:
+                    MP.get_back_arrow_calendar().click()
+                    aaa = aaa + 1
+                    ccc = 0
+        MP.get_dynamic_date(date_day_dep).click()
+        month = "a"
+        ccc = 0
+
+        while date_month_arr != month:
+            MP.next_arrow_cal().click()
+            # MP.get_back_arrow_calendar().click()
+
+            # MP.next_arrow_cal().click()
+
+            ccc = ccc + 1
+            if ccc > 10:
+                aaa = 0
+                while aaa < 12:
+                    MP.get_back_arrow_calendar().click()
+                    aaa = aaa + 1
+                    ccc = 0
+            month = MP.get_date_month().text
+
+
+        MP.get_dynamic_date(date_day_arr).click()
+
+        time.sleep(3)
+        MP.search_but().click()
+        time.sleep(9)
+        MP.driver.switch_to.window(MP.driver.window_handles[1])
+        title = MP.driver.title
+        # assert title == f"{departure_city} to {arrival_city} - Cheap flights from {departure_city} to {arrival_city} - Skiplagged"
+        FP.select_cheap_flight().click()
+        time.sleep(8)
+        FP.select_cheap_return().click()
+        time.sleep(6)
+
+        amount = FP.total_amt_of_trip().text
+        print(f" price from {departure_city} to {arrival_city}  {amount}")
+        emailsend.send_result(departure_city, arrival_city, amount, 300)
+        MP.get_close_button().click()
+        time.sleep(1)
+        MP.logo().click()
+        time.sleep(3)
+        number = number + 1

@@ -46,7 +46,7 @@ class Mainpage:
     next_arrow_calendar = (By.CSS_SELECTOR, "[class='ui-icon ui-icon-circle-triangle-e']")
     search_button = (By.CSS_SELECTOR, "[class='blue-btn flight-search-form__search-button']")
 
-    date_month =(By.XPATH, "(//*[@class = 'ui-datepicker-month'])[2]")
+    date_month =(By.XPATH, "(//*[@class = 'ui-datepicker-month'])[1]")
     close_button = (By.CSS_SELECTOR, "[data-dismiss='modal']")
 
 
